@@ -1,0 +1,27 @@
+{
+  "name": "devskiller-sample-vanilla-js-cypress-calculator",
+  "author": "Devskiller",
+  "private": true,
+  "scripts": {
+    "start": "serve src",
+    "postinstall": "cypress install && cypress cache path && cypress cache list",
+    "start-server": "npm start",
+    "test-e2e": "cypress run",
+    "test": "start-server-and-test start-server http://localhost:5000 test-e2e  && jrm test-results.xml \"cypress/reports/junit/results-*.xml\"",
+    "cypress:smoke": "ELECTRON_ENABLE_LOGGING=true cypress run --smoke-test --ping=101",
+    "cypress:verify": "ELECTRON_ENABLE_LOGGING=true ELECTRON_ENABLE_STACK_DUMPING=1 DEBUG=cypress* cypress verify",
+    "cypress:open": "cypress open"
+  },
+  "dependencies": {
+    "@types/node": "^16.11.1",
+    "cypress": "^8.2.0",
+    "cypress-mochawesome-reporter": "^2.3.0",
+    "cypress-multi-reporters": "^1.5.0",
+    "junit-report-merger": "^3.0.2",
+    "mocha": "^9.1.3",
+    "mocha-junit-reporter": "^2.0.2",
+    "rimraf": "^3.0.2",
+    "serve": "^12.0.1",
+    "start-server-and-test": "^1.14.0"
+  }
+}

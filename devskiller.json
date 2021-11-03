@@ -1,0 +1,17 @@
+{
+  "verification" : {
+    "testNamePatterns" : ["(.*)verify_pack(.*)"],
+    "pathPatterns" : ["**test/verify_pack/**"]
+  },
+  "readOnlyFiles": [
+    "cypress/**",
+    ".gitignore",
+    "package-lock.json",
+    "package.json"
+  ],
+  "hiddenFiles": [
+    "node_modules",
+    "node_modules/**",
+    "test-results.xml"
+  ]
+}
