@@ -34,6 +34,37 @@ The project will be executed with the following command:
 npm install && npm test
 ```
 
+When configuring the project, make sure that the **test-results.xml** file in JUnit format is returned as the output of the test execution. 
+
+In this case, **mocha-junit-reporter** and **junit-report-merger** are added to **package.json** and configured in **cypress.json**. 
+
+Additionaly, multiple result files are merged into one in the **test** script in **package.json**.
+
+```json
+"dependencies": {
+	"junit-report-merger": "^3.0.2",
+	"mocha-junit-reporter": "^2.0.2",
+},
+
+"scripts": {
+    "test": "(...) && jrm test-results.xml \"cypress/reports/junit/results-*.xml\"",
+},
+```
+```json
+{
+	"reporter": "cypress-multi-reporters",
+	"reporterOptions": {
+		"reporterEnabled": "cypress-mochawesome-reporter, mocha-junit-reporter",
+		"mochaJunitReporterReporterOptions": {
+			"mochaFile": "cypress/reports/junit/results-[hash].xml",
+			"rootSuiteTitle": "Calculator",
+			"testSuitesTitle": "Calculator",
+			"testCaseSwitchClassnameAndName": true
+		}
+	},
+}
+```
+
 **When compressing the project contents into a ZIP archive please skip
 `./node_modules` directories.**
 
